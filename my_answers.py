@@ -1,25 +1,31 @@
 import numpy as np
 
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
-import keras
+#from keras.models import Sequential
+#from keras.layers import Dense
+#from keras.layers import LSTM
+#import keras
 
 
 # TODO: fill out the function below that transforms the input series 
 # and window-size into a set of input/output pairs for use with our RNN model
+
 def window_transform_series(series, window_size):
     # containers for input/output pairs
     X = []
     y = []
-
+    
+    for i in range(len(series) - window_size): 
+        X.append(series[i: i+window_size])
+          
     # reshape each 
     X = np.asarray(X)
     X.shape = (np.shape(X)[0:2])
+    
+    y = series[window_size:]
     y = np.asarray(y)
     y.shape = (len(y),1)
 
-    return X,y
+    return X,y    
 
 # TODO: build an RNN to perform regression on our time series input/output data
 def build_part1_RNN(window_size):
