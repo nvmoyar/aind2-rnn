@@ -23,6 +23,7 @@ def window_transform_series(series, window_size):
     X = np.asarray(X)
     X.shape = (np.shape(X)[0:2])
     
+    # y is series array - the window size because the stride = 1 
     y = series[window_size:]
     y = np.asarray(y)
     y.shape = (len(y),1)
@@ -55,12 +56,21 @@ def window_transform_text(text, window_size, step_size):
     inputs = []
     outputs = []
     
-    for char in range(len(text) - window_size): 
+    # create the input vector
+    for char in range(0, len(text) - window_size, step_size): 
         inputs.append(text[char : char + window_size])
-    
-     # reshape each 
+          
+     # reshape inputs
     inputs = np.asarray(inputs)
     inputs.shape = (np.shape(inputs)[0:2])
+    
+    # create output vector
+    for char in range(window_size, len(text) - window_size, step_size): 
+        outputs.append(text[char])
+    
+    # reshape outputs
+    outputs = np.asarray(outputs)
+    outputs.shape = (len(outputs),1)
 
     return inputs,outputs
 
