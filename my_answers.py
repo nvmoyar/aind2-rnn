@@ -17,7 +17,7 @@ def window_transform_series(series, window_size):
     y = []
     
     for i in range(len(series) - window_size): 
-        X.append(series[i: i+window_size])
+        X.append(series[i: i + window_size])
           
     # reshape each 
     X = np.asarray(X)
@@ -42,12 +42,13 @@ def build_part1_RNN(window_size):
 
 ### Clean text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
-    punctuation = ['!', ',', '.', ':', ';', '?']
+    punctuation = ['!', ',', '.', ':', ';', '?', '"', '$', '%', '&', "'", '(', ')', '*', '-', '/','@']
     
-    for char in punctuation: 
-        text = text.replace( char ,' ')
+    for char in text: 
+        if char in punctuation: 
+            text = text.replace(char ,' ')
 
-    return text
+    return text.lower()
 
 ### Fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
 
@@ -57,11 +58,11 @@ def window_transform_text(text, window_size, step_size):
     outputs = []
     
     # create the input vector
-    for char in range(0, len(text) - window_size, step_size): 
-        inputs.append(text[char : char + window_size])       
+    for chars in range(0, len(text), step_size): 
+        inputs.append(text[chars : chars + window_size])       
    
     # create output vector
-    for char in range(window_size, len(text) - window_size, step_size): 
+    for char in range(window_size, len(text), step_size): 
         outputs.append(text[char])
     
     return inputs,outputs
