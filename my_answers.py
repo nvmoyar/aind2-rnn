@@ -34,8 +34,8 @@ def window_transform_series(series, window_size):
 def build_part1_RNN(window_size):
     model = Sequential()
     model.add(LSTM(5, input_shape = (window_size,1)))
-    model.add(Dropout(0.2))
-    model.add(Dense(1, activation="sigmoid"))
+    # model.add(Dropout(0.1))
+    model.add(Dense(1, activation="linear"))
     return model          
 
 
