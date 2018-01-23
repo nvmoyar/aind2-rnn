@@ -8,7 +8,7 @@ from keras import optimizers
 import keras
 
 
-# TODO: fill out the function below that transforms the input series 
+# Fill out the function below that transforms the input series 
 # and window-size into a set of input/output pairs for use with our RNN model
 
 def window_transform_series(series, window_size):
@@ -30,7 +30,7 @@ def window_transform_series(series, window_size):
     return X,y    
 
 
-# TODO: build an RNN to perform regression on our time series input/output data
+# RNN to perform regression on our time series input/output data
 def build_part1_RNN(window_size):
     model = Sequential()
     model.add(LSTM(5, input_shape = (window_size,1)))
@@ -39,17 +39,28 @@ def build_part1_RNN(window_size):
     return model          
 
 
-### TODO: return the text input with only ascii lowercase and the punctuation given below included.
+### Clean text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
     punctuation = ['!', ',', '.', ':', ';', '?']
+    
+    for char in punctuation: 
+        text = text.replace( char ,' ')
 
     return text
 
-### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
+### Fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
+
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
+    
+    for char in range(len(text) - window_size): 
+        inputs.append(text[char : char + window_size])
+    
+     # reshape each 
+    inputs = np.asarray(inputs)
+    inputs.shape = (np.shape(inputs)[0:2])
 
     return inputs,outputs
 
