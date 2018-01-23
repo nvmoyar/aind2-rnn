@@ -58,23 +58,16 @@ def window_transform_text(text, window_size, step_size):
     
     # create the input vector
     for char in range(0, len(text) - window_size, step_size): 
-        inputs.append(text[char : char + window_size])
-          
-     # reshape inputs
-    inputs = np.asarray(inputs)
-    inputs.shape = (np.shape(inputs)[0:2])
-    
+        inputs.append(text[char : char + window_size])       
+   
     # create output vector
     for char in range(window_size, len(text) - window_size, step_size): 
         outputs.append(text[char])
     
-    # reshape outputs
-    outputs = np.asarray(outputs)
-    outputs.shape = (len(outputs),1)
-
     return inputs,outputs
 
-# TODO build the required RNN model: 
+# Build the required RNN model: 
 # a single LSTM hidden layer with softmax activation, categorical_crossentropy loss 
+
 def build_part2_RNN(window_size, num_chars):
     pass
