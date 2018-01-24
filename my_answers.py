@@ -1,7 +1,7 @@
 import numpy as np
 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout
+from keras.layers import Dense, Dropout, Activation
 from keras.layers import LSTM
 from keras import optimizers
 
@@ -16,6 +16,7 @@ def window_transform_series(series, window_size):
     X = []
     y = []
     
+    # iteration over the length of the series minus the window size, with the step of 1
     for i in range(len(series) - window_size): 
         X.append(series[i: i + window_size])
           
@@ -58,13 +59,12 @@ def window_transform_text(text, window_size, step_size):
     outputs = []
     
     # create the input vector
-    for chars in range(0, len(text), step_size): 
-        inputs.append(text[chars : chars + window_size])       
-   
-    # create output vector
-    for char in range(window_size, len(text), step_size): 
-        outputs.append(text[char])
     
+    # iteration over the length of the series minus the window size, with the step of 1
+    for chars in range(0, (len(text) - window_size) // step_size, step_size): 
+        inputs.append(text[chars : chars + window_size])
+        outputs.append(text[chars + window_size])
+   
     return inputs,outputs
 
 # Build the required RNN model: 
