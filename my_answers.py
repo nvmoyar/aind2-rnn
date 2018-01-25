@@ -49,7 +49,6 @@ def cleaned_text(text):
     print(punctuation+letters)
     
     for char in text: 
-        #print(char)
         if (char not in punctuation + letters): 
             text = text.replace(char ,' ')
 
@@ -62,13 +61,10 @@ def window_transform_text(text, window_size, step_size):
     inputs = []
     outputs = []
     
-    # create the input vector
-    
-    # iteration over the length of the series minus the window size, with the step of 1
-    for chars in range(0, (len(text) - window_size) // step_size, step_size): 
-        inputs.append(text[chars : chars + window_size])
-        outputs.append(text[chars + window_size])
-   
+    for i in range(0, len(text), step_size): 
+        if len(text[i : i + window_size]) == window_size: 
+            inputs.append(text[i : i + window_size])
+            outputs.append(text[window_size + i])    
     return inputs,outputs
 
 # Build the required RNN model: 
