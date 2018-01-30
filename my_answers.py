@@ -45,7 +45,7 @@ def build_part1_RNN(window_size):
 ### Clean text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
     
-    # Define chars contained in ascii lowercase and punctuation in English language
+    # Define chars contained in ascii lowercase and punctuation in English language (33 characters)
     punctuation = [' ', '!', ',', '.', ':', ';', '?']
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
       
@@ -66,12 +66,12 @@ def window_transform_text(text, window_size, step_size):
     outputs = []
     
     # for the number of chars of 'text', we are going to move the step of the iterator the same to step_size 
-    for i in range(0, len(text), step_size): 
+    for i in range(0, len(text) - window_size, step_size): 
         # before adding the chars to the list, let's check if the chars have the proper size = window_size,
         # otherwise is end of sentence and the remaining chars will be ignored...
-        if len(text[i : i + window_size]) == window_size: 
-            inputs.append(text[i : i + window_size])
-            outputs.append(text[window_size + i])    
+        # if len(text[i : i + window_size]) == window_size: 
+        inputs.append(text[i : i + window_size])
+        outputs.append(text[window_size + i])    
     return inputs,outputs
 
 
