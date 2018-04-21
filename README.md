@@ -25,7 +25,9 @@ In this project, we implement a popular Recurrent Neural Network (RNN) architect
 
 For starters, a tokenizer is built to allow only ASCII lowercase and some punctuation marks. After cleaning up the text, we proceed to build the sliding window for this problem. This function is analogous to the one built on the first part of this project with the difference we slide a window of length T along our giant text corpus instead of sliding char by char. This is done with large input texts when sliding the window along one character at a time we would create far too many input/output pairs to be able to reasonably compute with. We will use this function to build our training set, same as we did already in part one. 
 
-Since this is a multiclassification problem, we need to build our classes set and get the one-hot encoded representation for each class. Right after, we will use the resulting dictionary to encode the training set. Since this model takes longer to train, we train a subset before, in order to tune this LSTM model. Details about analytics and time training can be found at the FloydHub link provided at the footer of this document. 
+Since this is a multiclassification problem, we need to build our classes set and get the one-hot encoded representation for each class. Right after, we will use the resulting dictionary to encode the training set. Since this model takes longer to train, we train a subset before, in order to tune this LSTM model. Weights are saved in hdf5 files and they can be found in the last job of this [FloydHub repository](https://www.floydhub.com/nvmoyar/projects/rnn-time-series). Details about analytics and time training can be found at the FloydHub link provided at the footer of this document. 
+
+We finally use the trained model to get some text predictions. Since the loss is quite low, the predicted/generated text is not sensic but it is mainly English and it is good. 
 
 [Reading Notes](https://padlet.com/nvmoyar/72g3qqxc5xp6)
 
