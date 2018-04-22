@@ -37,7 +37,7 @@ We finally use the trained model to get some text predictions. Since the loss is
 * [Test](http://localhost:8888/notebooks/AIND-TimeSeriesRegressor/RNN_project.ipynb)
 * [Demo](https://www.floydhub.com/nvmoyar/projects/rnn-time-series)
 
-### Install using FloydHub
+#### Requirements
 
 FloydHub is a platform for training and deploying deep learning models in the cloud. It removes the hassle of launching your own cloud instances and configuring the environment. For example, FloydHub will automatically set up an AWS instance with TensorFlow, the entire Python data science toolkit, and a GPU. Then you can run your scripts or Jupyter notebooks on the instance. 
 For this project: 
@@ -50,10 +50,20 @@ You can see your instance on the list is running and has ID XXXXXXXXXXXXXXXXXXXX
 
 FloydHub comes with a bunch of popular deep learning frameworks such as TensorFlow, Keras, Caffe, Torch, etc. You can specify which framework you want to use by setting the environment. Here's the list of environments FloydHub has available, with more to come!
 
-#### Output
-Often you'll be writing data out, things like TensorFlow checkpoints. Or, updated notebooks. To get these files, you can get links to the data with:
+#### Datasets 
 
-> Floyd output run_ID
+Already included in this project in the datasets folder
+
+### Usage 
+
+floyd run --gpu --env tensorflow-1.1 --mode jupyter
+
+#### Output
+
+Often you'll be writing data out, things like TensorFlow checkpoints, updated notebooks, trained models and HDF5 files. You will find all these files, you can get links to the data with:
+
+> floyd output run_ID
+
 
 ### Install using Amazon Web Services
 
